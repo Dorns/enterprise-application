@@ -16,25 +16,25 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="TB_PROJETO_AM",schema="RM76093")
-@SequenceGenerator(name="seqprjam",sequenceName="SQ_TB_PROJETO",allocationSize=1)
+@Table(name = "TB_PROJETO_AM", schema = "RM76093")
+@SequenceGenerator(name = "seqprjam", sequenceName = "SQ_TB_PROJETO", allocationSize = 1)
 public class ProjetoAm {
 	@Id
-	@Column(name="CD_PROJETO")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="seqprjam")
+	@Column(name = "CD_PROJETO")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqprjam")
 	private int codigo;
-	@Column(name="DT_ENTREGA")
+	@Column(name = "DT_ENTREGA")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar dataEntrega;
-	@Column(name="DS_TEMA",nullable=false,length=200)
+	@Column(name = "DS_TEMA", nullable = false, length = 200)
 	private String tema;
-	@Column(name="DS_OBSERVACAO")
+	@Column(name = "DS_OBSERVACAO")
 	private String observacao;
-	@Column(name="VL_NOTA")
+	@Column(name = "VL_NOTA")
 	private float nota;
-	
-	@OneToOne(cascade=CascadeType.PERSIST)
-	@JoinColumn(name="CD_GRUPO")
+
+	@OneToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "CD_GRUPO")
 	private GrupoAm grupo;
 
 	public ProjetoAm(int codigo, Calendar dataEntrega, String tema, String observacao, float nota, GrupoAm grupo) {
@@ -45,6 +45,15 @@ public class ProjetoAm {
 		this.observacao = observacao;
 		this.nota = nota;
 		this.grupo = grupo;
+	}
+
+	public ProjetoAm(int codigo, Calendar dataEntrega, String tema, String observacao, float nota) {
+		super();
+		this.codigo = codigo;
+		this.dataEntrega = dataEntrega;
+		this.tema = tema;
+		this.observacao = observacao;
+		this.nota = nota;
 	}
 
 	public ProjetoAm() {
@@ -98,9 +107,5 @@ public class ProjetoAm {
 	public void setGrupo(GrupoAm grupo) {
 		this.grupo = grupo;
 	}
-	
-	
-	
-	
-	
+
 }

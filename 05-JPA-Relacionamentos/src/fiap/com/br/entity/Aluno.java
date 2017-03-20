@@ -1,11 +1,14 @@
 package fiap.com.br.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -14,7 +17,6 @@ import javax.persistence.Table;
 @Table(name = "TB_ALUNO")
 @SequenceGenerator(name = "seqAluno", sequenceName = "SQ_TB_ALUNO", allocationSize = 1)
 public class Aluno {
-
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqAluno")
 	private int rm;
@@ -26,6 +28,9 @@ public class Aluno {
 	@JoinColumn(name="CD_GRUPO")
 	//Na prova vai ser bi direcional
 	private GrupoAm grupo;
+	
+	@ManyToMany(mappedBy="alunos")//Nome do list do relacionamento
+	private List<Disciplina> disciplinas;
 
 	public GrupoAm getGrupo() {
 		return grupo;
@@ -50,4 +55,22 @@ public class Aluno {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+	public Aluno(int rm, String nome) {
+		super();
+		this.rm = rm;
+		this.nome = nome;
+	}
+
+	public Aluno() {
+		super();
+	}
+
+	public Aluno(int rm, String nome, GrupoAm grupo) {
+		super();
+		this.rm = rm;
+		this.nome = nome;
+		this.grupo = grupo;
+	}
+	
 }

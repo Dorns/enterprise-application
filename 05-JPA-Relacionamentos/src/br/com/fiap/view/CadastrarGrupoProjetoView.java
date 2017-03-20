@@ -24,7 +24,7 @@ public class CadastrarGrupoProjetoView {
 		ProjetoAmDAO projetoDao = new ProjetoAmDAOImpl(em);
 		
 		// Instanciar um grupo e um projeto
-		GrupoAm grupo = new GrupoAm(0, "GRUPOx");
+		GrupoAm grupo = new GrupoAm(0, "GRUPOx", null);
 		ProjetoAm projeto = new ProjetoAm(0, new GregorianCalendar(1999, Calendar.JANUARY, 23), "tema", "dsadsa", 8.5f,
 				grupo);
 		

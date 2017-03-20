@@ -1,7 +1,9 @@
 package fiap.com.br.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,8 +33,15 @@ public class GrupoAm {
 	private ProjetoAm projeto;
 	
 	//Relacionamento bi-direcional
-	@OneToMany(mappedBy="grupo")
+	@OneToMany(mappedBy="grupo", cascade=CascadeType.PERSIST)
 	private List<Aluno> alunos; 
+	
+	public void addAluno(Aluno aluno){
+		//Adicionar o aluno na lista
+		alunos.add(aluno);
+		//Setar o grupo do aluno
+		aluno.setGrupo(this);
+	}
 
 	public List<Aluno> getAlunos() {
 		return alunos;
@@ -47,16 +56,18 @@ public class GrupoAm {
 		this.codigo = codigo;
 		this.nome = nome;
 		this.projeto = projeto;
-	}
-	
-	public GrupoAm(int codigo, String nome) {
-		super();
-		this.codigo = codigo;
-		this.nome = nome;
+		alunos = new ArrayList<Aluno>();
 	}
 
 	public GrupoAm() {
 		super();
+		alunos = new ArrayList<Aluno>();
+	}
+
+	public GrupoAm(int codigo, String nome) {
+		super();
+		this.codigo = codigo;
+		this.nome = nome;
 	}
 
 	public int getCodigo() {
