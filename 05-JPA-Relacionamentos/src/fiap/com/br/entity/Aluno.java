@@ -2,6 +2,7 @@ package fiap.com.br.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,7 +30,7 @@ public class Aluno {
 	//Na prova vai ser bi direcional
 	private GrupoAm grupo;
 	
-	@ManyToMany(mappedBy="alunos")//Nome do list do relacionamento
+	@ManyToMany(mappedBy="alunos", cascade=CascadeType.PERSIST)//Nome do list do relacionamento
 	private List<Disciplina> disciplinas;
 
 	public GrupoAm getGrupo() {
@@ -72,5 +73,17 @@ public class Aluno {
 		this.nome = nome;
 		this.grupo = grupo;
 	}
-	
+
+	public Aluno(String nome) {
+		super();
+		this.nome = nome;
+	}
+
+	public List<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
+
+	public void setDisciplinas(List<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
+	}
 }

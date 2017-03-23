@@ -70,4 +70,18 @@ public class Disciplina {
 		this.cargaHoraria = cargaHoraria;
 		this.alunos = alunos;
 	}
+
+	public Disciplina(String nome, float cargaHoraria) {
+		super();
+		this.nome = nome;
+		this.cargaHoraria = cargaHoraria;
+	}
+
+	public List<Aluno> getAlunos() {
+		return alunos;
+	}
+
+	public void setAlunos(List<Aluno> alunos) {
+		this.alunos = alunos;
+	}
 }

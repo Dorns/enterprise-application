@@ -9,5 +9,5 @@ public interface GenericDAO<T,K> {
 	void update(T entidade);
 	T find(K id);
 	void delete(K id) throws IdNotFoundException;
-	void commit() throws CommitErrorException;
+	void commit() throws CommitErrorException; 
 }
