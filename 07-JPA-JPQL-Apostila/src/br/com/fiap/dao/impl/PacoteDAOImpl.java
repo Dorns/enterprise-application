@@ -1,5 +1,6 @@
 package br.com.fiap.dao.impl;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,7 +10,7 @@ import br.com.fiap.dao.PacoteDAO;
 import br.com.fiap.entity.Pacote;
 import br.com.fiap.entity.Transporte;
 
-public class PacoteDAOImpl extends GenericDAOImpl<Pacote,Integer> implements PacoteDAO{
+public class PacoteDAOImpl extends GenericDAOImpl<Pacote, Integer> implements PacoteDAO {
 
 	public PacoteDAOImpl(EntityManager entityManager) {
 		super(entityManager);
@@ -17,15 +18,13 @@ public class PacoteDAOImpl extends GenericDAOImpl<Pacote,Integer> implements Pac
 
 	@Override
 	public List<Pacote> listar() {
-		TypedQuery<Pacote> query = 
-				em.createQuery("from Pacote",Pacote.class);
+		TypedQuery<Pacote> query = em.createQuery("from Pacote", Pacote.class);
 		return query.getResultList();
 	}
 
 	@Override
 	public List<Pacote> buscarPorPreco(float minimo, float maximo) {
-		TypedQuery<Pacote> query = em.createQuery(
-			"from Pacote p where p.preco between :min and :max",Pacote.class);
+		TypedQuery<Pacote> query = em.createQuery("from Pacote p where p.preco between :min and :max", Pacote.class);
 		query.setParameter("min", minimo);
 		query.setParameter("max", maximo);
 		return query.getResultList();
@@ -37,8 +36,24 @@ public class PacoteDAOImpl extends GenericDAOImpl<Pacote,Integer> implements Pac
 		query.setParameter("t", transporte);
 		return query.getResultList();
 	}
+
+	@Override
+	public List<Pacote> buscaPorData(Calendar inicio, Calendar fim) {
+		return em.createQuery("from Pacote p where p.dataSaida between :i and :f", Pacote.class).setParameter("i", inicio).setParameter("f", fim).getResultList();
+	}
+
+	@Override
+	public Double buscarPrecoMedioPacote() {
+		return em.createQuery("select avg(p.preco) from Pacote p", Double.class).getSingleResult();
+	}
+
+	@Override
+	public Long buscarPacotePorData(Calendar inicio, Calendar fim) {
+		return em.createQuery("select count(p) from Pacote p where p.dataSaida between :i and :f", Long.class).setParameter("i", inicio).setParameter("f", fim).getSingleResult();
+	}
+
+	@Override
+	public Pacote buscarPacoteMaiorPreco() {
+		return em.createQuery("from Pacote p where p.preco = (select max(p.preco) from Pacote p)", Pacote.class).getSingleResult();
+	}
 }
-
-
-
-

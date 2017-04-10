@@ -23,9 +23,26 @@ public class ClienteDAOImpl extends GenericDAOImpl<Cliente, Integer> implements 
 
 	@Override
 	public List<Cliente> buscarPorDiaReserva(int reserva) {
-		TypedQuery<Cliente> query = em.createQuery("select r.cliente from Reserva r where r.numeroDias = :n", Cliente.class);
+		TypedQuery<Cliente> query = em.createQuery("select r.cliente from Reserva r where r.numeroDias = :n",
+				Cliente.class);
 		query.setParameter("n", reserva);
 		return query.getResultList();
 	}
 
+	@Override
+	public List<Cliente> buscar(String nome, String cidade) {
+		return em.createQuery("from Cliente c where c.nome like :n and c.endereco.cidade.nome like :c", Cliente.class)
+				.setParameter("n", "%" + nome + "%").setParameter("c", "%" + cidade + "%").getResultList();
+	}
+
+	@Override
+	public List<Cliente> buscarPorEstados(List<String> estados) {
+		return em.createQuery("from Cliente c where c.endereco.cidade.uf in :estados", Cliente.class)
+				.setParameter("estados", estados).setMaxResults(50).getResultList();
+	}
+
+	@Override
+	public Integer buscarQuantidadeClientes() {
+		return em.createQuery("select count(c) from Cliente c", Integer.class).getSingleResult();
+	}
 }
