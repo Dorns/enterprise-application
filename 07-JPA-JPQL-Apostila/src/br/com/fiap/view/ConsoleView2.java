@@ -5,15 +5,17 @@ import javax.persistence.EntityManager;
 import br.com.fiap.dao.ClienteDAO;
 import br.com.fiap.dao.EntityManagerFactorySingleton;
 import br.com.fiap.dao.impl.ClienteDAOImpl;
+import br.com.fiap.entity.Cliente;
 
-public class Exercicio08 {
-
+public class ConsoleView2 {
 	public static void main(String[] args) {
 		EntityManager em = EntityManagerFactorySingleton.getInstance().createEntityManager();
-		
+
 		ClienteDAO dao = new ClienteDAOImpl(em);
-		
-		System.out.println(dao.buscarQuantidadeClientes());
+
+		Cliente cliente = dao.buscarPorCpf("98728018736");
+
+		System.out.println(cliente.getNome() + " " + cliente.getCpf());
 		
 		em.close();
 		System.exit(0);

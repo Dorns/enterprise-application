@@ -40,7 +40,7 @@ public class PopulaBanco {
 		CidadeDAO cidadeDAO = new CidadeDAOImpl(em);
 		cidadeDAO.cadastrar(cidade1);
 		cidadeDAO.cadastrar(cidade2);
-		cidadeDAO.cadastrar(cidade3);
+		cidadeDAO.cadastrar(cidade3); 
 		cidadeDAO.salvar();
 		/**
 		 * FIM da persistencia das 3 cidades 

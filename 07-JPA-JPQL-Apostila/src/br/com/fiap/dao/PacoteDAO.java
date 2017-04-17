@@ -17,11 +17,11 @@ public interface PacoteDAO extends GenericDAO<Pacote,Integer>{
 	List<Pacote> buscaPorData(Calendar inicio, Calendar fim);
 	
 	// Retornar o preco medio dos pacotes cadastrados
-	Double buscarPrecoMedioPacote();
+	double buscarPrecoMedioPacote();
 
 	// Retornar a quantidade de pacote cadastrados que possuem a data de saída entre as duas datas
-	Long buscarPacotePorData(Calendar inicio, Calendar fim);
+	long buscarPacotePorData(Calendar inicio, Calendar fim);
 	
 	// Retornar o pacote que possui maior preço
-	Pacote buscarPacoteMaiorPreco();
+	List<Pacote> buscarPacoteMaiorPreco();
 }

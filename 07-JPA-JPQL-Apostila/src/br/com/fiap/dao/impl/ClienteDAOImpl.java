@@ -42,7 +42,18 @@ public class ClienteDAOImpl extends GenericDAOImpl<Cliente, Integer> implements 
 	}
 
 	@Override
-	public Integer buscarQuantidadeClientes() {
-		return em.createQuery("select count(c) from Cliente c", Integer.class).getSingleResult();
+	public long buscarQuantidadeClientes() {
+		return em.createQuery("select count(c) from Cliente c", Long.class).getSingleResult();
 	}
+
+	@Override
+	public Cliente buscarPorCpf(String cpf) {
+		return em.createNamedQuery("Cliente.porCpf", Cliente.class).setParameter("cpf", cpf).getSingleResult();
+	}
+
+	@Override
+	public List<Cliente> buscarPorMesAniversario(int mes) {
+		return em.createNamedQuery("Cliente.porMesNascimento", Cliente.class).setParameter("mes", mes).getResultList();
+	}
+
 }

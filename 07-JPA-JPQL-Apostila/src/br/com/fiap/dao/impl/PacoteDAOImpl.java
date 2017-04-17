@@ -43,17 +43,17 @@ public class PacoteDAOImpl extends GenericDAOImpl<Pacote, Integer> implements Pa
 	}
 
 	@Override
-	public Double buscarPrecoMedioPacote() {
+	public double buscarPrecoMedioPacote() {
 		return em.createQuery("select avg(p.preco) from Pacote p", Double.class).getSingleResult();
 	}
 
 	@Override
-	public Long buscarPacotePorData(Calendar inicio, Calendar fim) {
+	public long buscarPacotePorData(Calendar inicio, Calendar fim) {
 		return em.createQuery("select count(p) from Pacote p where p.dataSaida between :i and :f", Long.class).setParameter("i", inicio).setParameter("f", fim).getSingleResult();
 	}
 
 	@Override
-	public Pacote buscarPacoteMaiorPreco() {
-		return em.createQuery("from Pacote p where p.preco = (select max(p.preco) from Pacote p)", Pacote.class).getSingleResult();
+	public List<Pacote> buscarPacoteMaiorPreco() {
+		return em.createQuery("from Pacote p where p.preco = (select max(p.preco) from Pacote p)", Pacote.class).getResultList();
 	}
 }

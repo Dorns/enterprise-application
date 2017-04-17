@@ -13,13 +13,13 @@ public class Exercicio10 {
 
 	public static void main(String[] args) {
 		EntityManager em = EntityManagerFactorySingleton.getInstance().createEntityManager();
-		
+
 		PacoteDAO dao = new PacoteDAOImpl(em);
-		
-		System.out.println(dao.buscarPacotePorData(new GregorianCalendar(2016, Calendar.JANUARY, 1), new GregorianCalendar(2018, Calendar.JANUARY, 1)));
-		
+
+		System.out.println(dao.buscarPacotePorData(new GregorianCalendar(2016, Calendar.JANUARY, 1),
+				new GregorianCalendar(2018, Calendar.JANUARY, 1)));
+
 		em.close();
 		System.exit(0);
 	}
-
 }
