@@ -8,32 +8,33 @@ namespace Fiap.Banco.Model
 {
     class ContaPoupanca : Conta, IContaInvestimento
     {
-        private decimal Taxa { get; set; }
+        public decimal Taxa { get; set; }
 
         private readonly decimal _rendimento;
 
-        public ContaPoupanca(decimal valorInicial)
+        public ContaPoupanca(decimal rendimento)
         {
-            _rendimento = valorInicial;
-        }
-        public decimal CalculaRetornoInvestimento
-        {
-            get
-            {
-                return Saldo * _rendimento;
-            }
+            _rendimento = rendimento;
         }
 
         public override void Retirar(decimal valor)
         {
-            if (Saldo - valor < 0)
+            if (Saldo < valor + Taxa)
             {
-                Saldo = Saldo - valor * Taxa;
+                throw new Exception("Saldo Insuficiente");
+                
             }
-            else
-            {
-                throw new ArgumentException("Saldo Insuficiente");
-            }
+            Saldo -= valor + Taxa;
+        }
+
+        public override void Depositar(decimal valor)
+        {
+            Saldo += valor;
+        }
+
+        public decimal CalculaRetornoInvestimento()
+        {
+            return Saldo * _rendimento;
         }
     }
 }

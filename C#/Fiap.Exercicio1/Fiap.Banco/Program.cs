@@ -11,16 +11,31 @@ namespace Fiap.Banco
     {
         static void Main(string[] args)
         {
-            ContaCorrente contaCorrente = new ContaCorrente();
-            contaCorrente.Agencia = 1382;
-            contaCorrente.DataAbertura = DateTime.Now;
-            contaCorrente.Numero = 6541;
-            contaCorrente.Saldo = 1000;
-            contaCorrente.Tipo = TipoConta.Comum;
-
+            var contaCorrente = new ContaCorrente
+            {
+                Agencia = 1382,
+                DataAbertura = DateTime.Now,
+                Numero = 6541,
+                Saldo = 1000,
+                TipoConta = TipoConta.Comum
+            };
             contaCorrente.Depositar(1000);
 
-            contaCorrente.Retirar(3000);
+            contaCorrente.Retirar(2000);
+
+            var contaPoupanca = new ContaPoupanca(10)
+            {
+                Agencia = 1382,
+                DataAbertura = DateTime.Now,
+                Numero = 6541,
+                Saldo = 500,
+                Taxa = 10                
+            };
+
+            contaPoupanca.Depositar(2000);
+            contaPoupanca.Retirar(1000);
+            Console.WriteLine(contaPoupanca.CalculaRetornoInvestimento());
+            Console.ReadLine();
         }
     }
 }

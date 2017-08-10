@@ -16,10 +16,7 @@ namespace Fiap.Banco.Model
 
         public decimal Saldo { get; set; }
 
-        public virtual void Depositar(decimal valor)
-        {
-            Saldo = Saldo + valor;
-        }
+        public abstract void Depositar(decimal valor);
 
         public abstract void Retirar(decimal valor);
     }

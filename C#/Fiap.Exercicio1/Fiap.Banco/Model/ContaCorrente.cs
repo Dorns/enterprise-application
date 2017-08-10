@@ -8,14 +8,21 @@ namespace Fiap.Banco.Model
 {
     sealed class ContaCorrente : Conta
     {
-        public TipoConta Tipo { get; set; }
-  
+        public TipoConta Tipo { get; internal set; }
+        public TipoConta TipoConta { get; set; }
+
+        public override void Depositar(decimal valor)
+        {
+            Saldo += valor;
+        }
+
         public override void Retirar(decimal valor)
         {
-            if (Tipo.Equals("Comum") && (Saldo - valor < 0)) 
+            if (TipoConta == TipoConta.Comum && (Saldo < valor)) 
             {
-                throw new ArgumentException("Saldo Insuficiente");
+                throw new Exception("Saldo Insuficiente");
             }
+            Saldo -= valor;
         }
     }
 }
