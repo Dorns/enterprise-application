@@ -1,0 +1,48 @@
+﻿@model List<Fiap.Exercicio01.MVC.Models.Carro>
+
+@{
+    ViewBag.Title = "Listar";
+}
+
+<h2>Listar</h2>
+
+<table class="table">
+    <tr>
+        <th>Placa</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Placa</td>
+        </tr>
+    }
+    <tr>
+        <th>Valor</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Valor</td>
+        </tr>
+    }
+    <tr>
+        <th>Ar Condicionado</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ArCondicionado</td>
+        </tr>
+    }
+    <tr>
+        <th>Descricao</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Descricao</td>
+        </tr>
+    }
+</table>
+
+
