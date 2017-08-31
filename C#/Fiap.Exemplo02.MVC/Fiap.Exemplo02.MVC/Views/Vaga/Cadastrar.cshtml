@@ -1,0 +1,39 @@
+﻿@model Fiap.Exemplo02.MVC.Models.Vaga
+@{
+    ViewBag.Title = "Cadastrar";
+}
+
+<h2>Cadastrar</h2>
+
+@Helper.Message(TempData["msg"])
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(v => v.Cargo)
+        @Html.TextBoxFor(v => v.Cargo, new { @class = "form-control"} )
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(v => v.Descricao)
+        @Html.TextAreaFor(v => v.Descricao, new { @class = "form-control"})
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(v => v.Salario)
+        @Html.TextBoxFor(v => v.Salario, new { @class = "form-control"})
+    </div>
+    <div class="form-group">
+        @Html.CheckBoxFor(v => v.ValeRefeicao)
+        @Html.LabelFor(v => v.ValeRefeicao)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(v => v.Nivel)
+        @Html.DropDownListFor(v => v.Nivel ,
+            ViewBag.opcoes as SelectList, new { @class = "form-control" })
+    </div>
+    @Helper.Submit("Cadastrar")
+}
+
+@section Scripts{
+    <script></script>
+    <p>O java script vai aqui..</p>
+}

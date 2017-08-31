@@ -1,0 +1,26 @@
+﻿@model List<Fiap.Exemplo03.MVC.Models.Fruta>
+@{
+    ViewBag.Title = "Listar";
+}
+
+<h2>Listar</h2>
+<table class="table">
+    <tr>
+        <th>Nome</th>
+        <th>Calorias</th>
+        <th>Orgânico</th>
+        <th>Semente</th>
+        <th>Data de Cadastro</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Nome</td>
+            <td>@item.Calorias</td>
+            <td>@(item.Organico ? "Sim" : "Não")</td>
+            <td>@(item.Semente ? "Sim" : "Não")</td>
+            <td>@item.DataCadastro.ToShortDateString()</td>
+        </tr>
+    }
+</table>
+

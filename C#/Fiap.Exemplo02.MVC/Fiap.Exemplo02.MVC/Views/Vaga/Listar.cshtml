@@ -1,0 +1,20 @@
+﻿@model List<Fiap.Exemplo02.MVC.Models.Vaga>
+@{
+    ViewBag.Title = "Listar";
+}
+
+<h2>Lista de Vagas</h2>
+<table class="table">
+    <tr>
+        <th>Cargo</th>
+        <th>Salário</th>
+        <th>VR</th>
+        <th>Nível</th>
+        <th>Descrição</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+       @Html.Partial("_linhaTabela",item)
+    }
+</table>
+

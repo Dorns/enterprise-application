@@ -1,0 +1,34 @@
+﻿@model Fiap.Exemplo03.MVC.Models.Fruta
+@{
+    ViewBag.Title = "Cadastrar";
+}
+
+<h2>Cadastrar</h2>
+
+@if (TempData["msg"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["msg"]
+    </div>
+}
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(f => f.Nome)
+        @Html.TextBoxFor(f => f.Nome, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(f => f.Calorias)
+        @Html.TextBoxFor(f => f.Calorias, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.CheckBoxFor(f => f.Organico)
+        @Html.LabelFor(f => f.Organico)
+    </div>
+    <div class="form-group">
+        @Html.CheckBoxFor(f => f.Semente)
+        @Html.LabelFor(f => f.Semente)
+    </div>
+    <input type="submit" value="Salvar" class="btn btn-primary" />
+}
