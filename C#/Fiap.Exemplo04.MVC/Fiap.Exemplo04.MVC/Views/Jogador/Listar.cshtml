@@ -1,21 +1,21 @@
-﻿@model List <Fiap.Exemplo04.MVC.Models.Jogador>
+﻿@model List<Fiap.Exemplo04.MVC.Models.Jogador>
 @{
     ViewBag.Title = "Listar";
 }
 
-<h2>Lista de Jogadores</h2>
+<h2>Jogadores</h2>
 
-<table class="table">
+<table class="table table-striped">
     <tr>
-        <td>Nome</td>
-        <td>Data de Nascimento</td>
-        <td>Time</td>
+        <th>Nome</th>
+        <th>Data Nascimento</th>
+        <th>Time</th>
     </tr>
     @foreach (var item in Model)
     {
         <tr>
             <td>@item.Nome</td>
-            <td>@item.DataNascimento</td>
+            <td>@item.DataNascimento.ToShortDateString()</td>
             <td>@item.Time.Nome</td>
         </tr>
     }

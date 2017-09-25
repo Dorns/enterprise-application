@@ -9,6 +9,9 @@ namespace Fiap.Exemplo04.MVC.Models
     public class Time
     {
         public int TimeId { get; set; }
+
+        [Required]
+        [StringLength(200, ErrorMessage = "Máximo de 200 caractéres")]
         public string Nome { get; set; }
         [Display(Name ="Data de Fundação")]
         public DateTime DataFundacao { get; set; }

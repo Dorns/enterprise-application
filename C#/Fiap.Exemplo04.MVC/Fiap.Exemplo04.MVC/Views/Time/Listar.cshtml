@@ -3,20 +3,21 @@
     ViewBag.Title = "Listar";
 }
 
-<h2>Listar</h2>
+<h2>Times</h2>
 
-<table class="table">
+<table class="table table-striped">
     <tr>
         <th>Nome</th>
-        <th>Data de Fundação</th>
+        <th>Data Fundação</th>
         <th>Técnico</th>
     </tr>
     @foreach (var item in Model)
     {
-       <tr>
-           <td>@item.Nome</td>
-           <td>@item.DataFundacao</td>
-           <td>@item.Tecnico.Nome</td>
-       </tr>
+        <tr>
+            <td>@item.Nome</td>
+            <td>@item.DataFundacao.ToShortDateString()</td>
+            <td>@item.Tecnico.Nome</td>
+        </tr>
     }
 </table>
+
