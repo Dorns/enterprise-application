@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace ProjetoFinalMVC.Controllers
 {
-    public class EmpresaController : Controller
+    public class FuncionarioController : Controller
     {
         private UnitOfWork _unit = new UnitOfWork();
 
@@ -16,23 +16,33 @@ namespace ProjetoFinalMVC.Controllers
         [HttpGet]
         public ActionResult Cadastrar()
         {
+            var lista = _unit.EmpresaRepository.Listar();
+            ViewBag.empresas = new SelectList(lista, "EmpresaId", "RazaoSocial");
             return View();
         }
 
         [HttpPost]
-        public ActionResult Cadastrar(Empresa empresa)
+        public ActionResult Cadastrar(Funcionario funcionario)
         {
             if (ModelState.IsValid)
             {
-                _unit.EmpresaRepository.Cadastrar(empresa);
+                _unit.FuncionarioRepository.Cadastrar(funcionario);
                 _unit.Salvar();
-                TempData["msg"] = "Cadastrado!";
+                TempData["msg"] = "Funcionario Cadastrado!";
                 return RedirectToAction("Cadastrar");
             }
             else
             {
-                return View(empresa);
+                var lista = _unit.EmpresaRepository.Listar();
+                ViewBag.empresas = new SelectList(lista, "EmpresaId", "RazaoSocial");
+                return View(funcionario);
             }
+        }
+
+        [HttpGet]
+        public ActionResult Listar()
+        {
+            return View(_unit.FuncionarioRepository.Listar());
         }
 
         protected override void Dispose(bool disposing)

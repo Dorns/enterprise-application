@@ -43,7 +43,8 @@ namespace Fiap.Exemplo04.MVC.Controllers
                 //Buscar todos os times cadastrados
                 var lista = _unit.TimeRepository.Listar();
                 //Passa os valores para o select da tela
-                ViewBag.times = new SelectList(lista, "TimeId", "Nome");                return View(jogador);
+                ViewBag.times = new SelectList(lista, "TimeId", "Nome");                
+				return View(jogador);
             }
         }
 

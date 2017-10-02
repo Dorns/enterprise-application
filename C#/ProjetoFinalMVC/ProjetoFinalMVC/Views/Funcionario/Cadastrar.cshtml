@@ -1,0 +1,39 @@
+﻿@model ProjetoFinalMVC.Models.Funcionario
+@{
+    ViewBag.Title = "Cadastrar";
+}
+
+<h2>Cadastrar</h2>
+
+@if(TempData["msg"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["msg"]
+    </div>
+}
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(f => f.Nome)
+        @Html.TextBoxFor(f => f.Nome, new { @class = "form-control" })
+        @Html.ValidationMessageFor(f => f.Nome)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(f => f.Salario)
+        @Html.TextBoxFor(f => f.Salario, new { @class = "form-control" })
+        @Html.ValidationMessageFor(f => f.Salario)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(f => f.DataAdmissao)
+        @Html.TextBoxFor(f => f.DataAdmissao, new { @class = "form-control" })
+        @Html.ValidationMessageFor(f => f.DataAdmissao)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(f => f.Empresa)
+        @Html.DropDownListFor(f => f.EmpresaId, ViewBag.empresas as SelectList, "Selecione", new { @class = "form-control" })
+        @Html.ValidationMessageFor(f => f.EmpresaId)
+     </div>
+    <input type="submit" value="Salvar" class="btn btn-primary" />
+}
+
