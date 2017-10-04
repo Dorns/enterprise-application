@@ -1,0 +1,23 @@
+﻿@model List<Fiap.Revisao.Models.Funcionario>
+@{
+    ViewBag.Title = "Listar";
+}
+
+<h2>Listar</h2>
+<table class="table table-striped">
+    <tr>
+        <th>Nome</th>
+        <th>Salario</th>
+        <th>Data de Admissao</th>
+        <th>Empresa</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Nome</td>
+            <td>@item.Salario</td>
+            <td>@item.DataAdmissao.ToShortDateString()</td>
+            <td>@item.Empresa.RazaoSocial</td>
+        </tr>
+    }
+</table> 
